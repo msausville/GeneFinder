@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-YOUR HEADER COMMENT HERE
+gene_finder testing 1
 
-@author: YOUR NAME HERE
+@author: Meaghen Sausville
 
 """
 
@@ -30,8 +30,16 @@ def get_complement(nucleotide):
     >>> get_complement('C')
     'G'
     """
-    # TODO: implement this
-    pass
+    if (nucleotide == 'A'):
+        return 'T'
+    elif (nucleotide =='T'):
+        return 'A'
+    elif (nucleotide =='G'):
+        return 'C'
+    elif (nucleotide =='C'):
+        return 'G'
+    else:
+        return "Not a valid nucleotide"
 
 
 def get_reverse_complement(dna):
@@ -160,6 +168,7 @@ def gene_finder(dna):
     """
     # TODO: implement this
     pass
+
 
 if __name__ == "__main__":
     import doctest
