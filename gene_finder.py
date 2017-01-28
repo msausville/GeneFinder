@@ -32,11 +32,11 @@ def get_complement(nucleotide):
     """
     if (nucleotide == 'A'):
         return 'T'
-    elif (nucleotide =='T'):
+    elif (nucleotide == 'T'):
         return 'A'
-    elif (nucleotide =='G'):
+    elif (nucleotide == 'G'):
         return 'C'
-    elif (nucleotide =='C'):
+    elif (nucleotide == 'C'):
         return 'G'
     else:
         return "Not a valid nucleotide"
@@ -53,8 +53,11 @@ def get_reverse_complement(dna):
     >>> get_reverse_complement("CCGCGTTCA")
     'TGAACGCGG'
     """
-    # TODO: implement this
-    pass
+    reversed1 = dna[::-1]
+    output = ""
+    for dnareversed in reversed1:
+        output = output + get_complement(dnareversed)
+    return output
 
 
 def rest_of_ORF(dna):
