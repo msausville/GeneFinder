@@ -73,8 +73,17 @@ def rest_of_ORF(dna):
     >>> rest_of_ORF("ATGAGATAGG")
     'ATGAGA'
     """
-    # TODO: implement this
-    pass
+    i = 0  # index (where in the "line" the gene falls)
+    output = ""  # gene from start codon without end codon
+
+    while i < len(dna):
+        codon = dna[i:i+3]
+        if codon == 'TAG' or codon == 'TAA' or codon == 'TGA':
+            return output
+        output = output + codon
+        i = i+3
+
+    return output
 
 
 def find_all_ORFs_oneframe(dna):
@@ -90,8 +99,18 @@ def find_all_ORFs_oneframe(dna):
     >>> find_all_ORFs_oneframe("ATGCATGAATGTAGATAGATGTGCCC")
     ['ATGCATGAATGTAGA', 'ATGTGCCC']
     """
-    # TODO: implement this
-    pass
+    i = 0
+    ALLORF = []
+
+    while i < len(dna):
+        codon = dna[i:i+3]
+        if codon == 'ATG':
+            ORF = rest_of_ORF(dna[i:])
+            ALLORF.append(ORF) #.append adds a string (ORF) to a list of strings (ALLORF)
+            i += len(ORF)
+        else:
+            i = i+3
+    return ALLORF
 
 
 def find_all_ORFs(dna):
@@ -107,8 +126,12 @@ def find_all_ORFs(dna):
     >>> find_all_ORFs("ATGCATGAATGTAG")
     ['ATGCATGAATGTAG', 'ATGAATGTAG', 'ATG']
     """
-    # TODO: implement this
-    pass
+    i = 0
+    output = []
+    while i < 3:
+        output += find_all_ORFs_oneframe(dna[i:])  # += means take the right side of equation and add that to output, basically "output = output plus this."
+        i = i+1
+    return output
 
 
 def find_all_ORFs_both_strands(dna):
@@ -120,8 +143,12 @@ def find_all_ORFs_both_strands(dna):
     >>> find_all_ORFs_both_strands("ATGCGAATGTAGCATCAAA")
     ['ATGCGAATG', 'ATGCTACATTCGCAT']
     """
-    # TODO: implement this
-    pass
+    TotalORFs = []
+
+    TotalORFs += find_all_ORFs(dna)
+    TotalORFs += find_all_ORFs(get_reverse_complement(dna))
+
+    return TotalORFs
 
 
 def longest_ORF(dna):
