@@ -170,9 +170,13 @@ def longest_ORF_noncoding(dna, num_trials):
         dna: a DNA sequence
         num_trials: the number of random shuffles
         returns: the maximum length longest ORF """
-    # TODO: implement this
-    pass
 
+        i = 0
+        For i < num_trials:
+            dna = shufflestring(dna)[1]
+            i += 1
+        result = longest_ORF(dna)
+        return result
 
 def coding_strand_to_AA(dna):
     """ Computes the Protein encoded by a sequence of DNA.  This function
